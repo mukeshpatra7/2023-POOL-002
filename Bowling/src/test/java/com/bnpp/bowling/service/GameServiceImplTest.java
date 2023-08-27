@@ -71,4 +71,14 @@ class GameServiceImplTest {
 		assertArrayEquals(roll, captor.getValue());
 	}
 
+	@DisplayName("When Bowling rolls has all spare scenario")
+	@Test
+	void testCalculateScoreForALLSpare() {
+		String input = "5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5";
+		int[] roll = new int[] { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+		bowlingGameServiceImpl.play(new BowlingInput(input));
+		verify(calculateScoreService, times(1)).calculateScore(captor.capture());
+		assertArrayEquals(roll, captor.getValue());
+	}
+
 }

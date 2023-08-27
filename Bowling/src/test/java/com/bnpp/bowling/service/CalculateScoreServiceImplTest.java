@@ -1,7 +1,9 @@
 package com.bnpp.bowling.service;
 
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -50,6 +52,14 @@ class CalculateScoreServiceImplTest {
 		lenient().when(bowlingRuleServiceImpl.isSpare(5, 5)).thenReturn(true);
 		int[] roll = new int[] { 0, 0, 5, 5, 1, 0, 1, 1, 1, 2, 3, 1, 2, 2, 4, 4, 1, 1, 1, 2 };
 		assertEquals(38, calculateScoreServiceImpl.calculateScore(roll).getScore());
+	}
+
+	@DisplayName("When Bowling rolls has all spare scenario")
+	@Test
+	void testCalculateScoreForALLSpare() {
+		when(bowlingRuleServiceImpl.isSpare(anyInt(), anyInt())).thenReturn(true);
+		int[] roll = new int[] { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+		assertEquals(150, calculateScoreServiceImpl.calculateScore(roll).getScore());
 	}
 
 }
