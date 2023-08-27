@@ -1,5 +1,7 @@
 package com.bnpp.bowling.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +20,7 @@ public class BowlingController {
 	private final GameService gameService;
 
 	@PostMapping(value = "/bowling/roll")
-	ResponseEntity<BowlingResponse> calculateBowlingScore(@RequestBody BowlingInput input) {
+	ResponseEntity<BowlingResponse> calculateBowlingScore(@Valid @RequestBody BowlingInput input) {
 		return new ResponseEntity<>(gameService.play(input), HttpStatus.OK);
 	}
 }

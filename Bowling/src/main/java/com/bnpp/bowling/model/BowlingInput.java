@@ -1,9 +1,10 @@
 package com.bnpp.bowling.model;
 
+import javax.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
 @Getter
@@ -11,6 +12,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BowlingInput {
-	@NonNull
+	@NotBlank
 	String bowlingRoll;
 }
