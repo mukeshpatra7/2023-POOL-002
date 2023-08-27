@@ -3,12 +3,15 @@ package com.bnpp.bowling.service;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+import org.springframework.stereotype.Service;
+
 import com.bnpp.bowling.constant.Constant;
 import com.bnpp.bowling.model.BowlingInput;
 import com.bnpp.bowling.model.BowlingResponse;
 
 import lombok.RequiredArgsConstructor;
 
+@Service
 @RequiredArgsConstructor
 public class GameServiceImpl implements GameService {
 	private final CalculateScoreService calculateScoreService;
