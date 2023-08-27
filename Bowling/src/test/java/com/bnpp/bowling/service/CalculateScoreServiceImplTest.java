@@ -62,4 +62,12 @@ class CalculateScoreServiceImplTest {
 		assertEquals(150, calculateScoreServiceImpl.calculateScore(roll).getScore());
 	}
 
+	@DisplayName("When Bowling has Strike scenario")
+	@Test
+	void testCalculateScoreForStrike() {
+		lenient().when(bowlingRuleServiceImpl.isStrike(10)).thenReturn(true);
+		int[] roll = new int[] { 10, 0, 0, 0, 1, 1, 1, 2, 3, 1, 2, 2, 4, 4, 1, 1, 1, 2, 1 };
+		assertEquals(37, calculateScoreServiceImpl.calculateScore(roll).getScore());
+	}
+
 }

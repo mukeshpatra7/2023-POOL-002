@@ -22,4 +22,11 @@ class BowlingRuleServiceImplTest {
 		assertTrue(bowlingServiceimpl.isSpare(9, 1));
 		assertFalse(bowlingServiceimpl.isSpare(0, 4));
 	}
+
+	@DisplayName("Validate whether rolls is strike or not")
+	@Test
+	void testValidateRollIsStrike() {
+		assertTrue(bowlingServiceimpl.isStrike(10));
+		assertFalse(bowlingServiceimpl.isStrike(4));
+	}
 }

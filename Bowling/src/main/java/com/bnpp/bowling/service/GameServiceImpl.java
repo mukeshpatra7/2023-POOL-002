@@ -27,6 +27,8 @@ public class GameServiceImpl implements GameService {
 				rolls[i] = String.valueOf(Constant.ZERO);
 			} else if (rolls[i].equals(Constant.SPARE)) {
 				rolls[i] = String.valueOf(Constant.TEN - Integer.parseInt(rolls[i - 1]));
+			} else if (rolls[i].equals(Constant.STRIKE)) {
+				rolls[i] = String.valueOf(Constant.TEN);
 			}
 		});
 	}

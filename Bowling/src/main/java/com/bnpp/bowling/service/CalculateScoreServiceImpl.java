@@ -22,7 +22,11 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
 		IntStream.iterate(Constant.ZERO, frame -> frame + Constant.ONE).limit(Constant.TEN).forEach(frame -> {
 			Integer frameScore = Constant.ZERO;
 
-			if (bowlingRuleService.isSpare(roll[cursor], roll[cursor + Constant.ONE])) {
+			if (bowlingRuleService.isStrike(roll[cursor])) {
+				frameScore = Integer.sum(frameScore, Integer.sum(roll[cursor + Constant.ONE],
+						Integer.sum(roll[cursor + Constant.TWO], Constant.TEN)));
+				cursor++;
+			} else if (bowlingRuleService.isSpare(roll[cursor], roll[cursor + Constant.ONE])) {
 				frameScore = Integer.sum(frameScore, Integer.sum(roll[cursor + Constant.TWO], Constant.TEN));
 				cursor += Constant.TWO;
 			} else {

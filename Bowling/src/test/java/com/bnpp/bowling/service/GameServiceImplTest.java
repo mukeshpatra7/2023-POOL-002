@@ -81,4 +81,14 @@ class GameServiceImplTest {
 		assertArrayEquals(roll, captor.getValue());
 	}
 
+	@DisplayName("When Bowling has Strike scenario")
+	@Test
+	void testCalculateScoreForStrike() {
+		String input = "X -- -1 11 23 12 24 41 11 21";
+		int[] roll = new int[] { 10, 0, 0, 0, 1, 1, 1, 2, 3, 1, 2, 2, 4, 4, 1, 1, 1, 2, 1 };
+		bowlingGameServiceImpl.play(new BowlingInput(input));
+		verify(calculateScoreService, times(1)).calculateScore(captor.capture());
+		assertArrayEquals(roll, captor.getValue());
+	}
+
 }

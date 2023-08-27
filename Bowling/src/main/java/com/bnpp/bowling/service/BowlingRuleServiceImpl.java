@@ -12,4 +12,8 @@ public class BowlingRuleServiceImpl implements BowlingRuleService {
 		return prevRoll + nextRoll == Constant.TEN;
 	}
 
+	@Override
+	public boolean isStrike(int roll) {
+		return roll == Constant.TEN;
+	}
 }

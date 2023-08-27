@@ -10,5 +10,6 @@ public class Constant {
 	public static final int TWO = 2;
 	public static final String MISS = "-";
 	public static final String SPARE = "/";
+	public static final String STRIKE = "X";
 
 }
