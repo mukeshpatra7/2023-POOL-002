@@ -70,4 +70,12 @@ class CalculateScoreServiceImplTest {
 		assertEquals(37, calculateScoreServiceImpl.calculateScore(roll).getScore());
 	}
 
+	@DisplayName("When Bowling rolls has all Strike scenario")
+	@Test
+	void testCalculateScoreForALLStrike() {
+		when(bowlingRuleServiceImpl.isStrike(anyInt())).thenReturn(true);
+		int[] roll = new int[] { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
+		assertEquals(300, calculateScoreServiceImpl.calculateScore(roll).getScore());
+	}
+
 }
