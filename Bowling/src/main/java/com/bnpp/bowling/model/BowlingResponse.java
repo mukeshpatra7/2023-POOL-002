@@ -1,15 +1,22 @@
 package com.bnpp.bowling.model;
 
-import lombok.AllArgsConstructor;
+import java.util.List;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BowlingResponse {
 
+	@NonNull
+	List<Integer> frames;
 	long score;
+
+	public long getScore() {
+		return frames.stream().mapToLong(Long::valueOf).sum();
+	}
 }

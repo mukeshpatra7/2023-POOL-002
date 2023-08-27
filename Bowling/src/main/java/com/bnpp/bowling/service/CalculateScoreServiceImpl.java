@@ -1,5 +1,7 @@
 package com.bnpp.bowling.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.IntStream;
 
 import org.springframework.stereotype.Service;
@@ -14,10 +16,10 @@ import lombok.RequiredArgsConstructor;
 public class CalculateScoreServiceImpl implements CalculateScoreService {
 	private final BowlingRuleService bowlingRuleService;
 	private int cursor = Constant.ZERO;
-	private int gameScore = Constant.ZERO;
 
 	@Override
 	public BowlingResponse calculateScore(int[] roll) {
+		List<Integer> gameScore = new ArrayList<>();
 		cursor = Constant.ZERO;
 		IntStream.iterate(Constant.ZERO, frame -> frame + Constant.ONE).limit(Constant.TEN).forEach(frame -> {
 			Integer frameScore = Constant.ZERO;
@@ -34,7 +36,7 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
 				cursor += Constant.TWO;
 			}
 
-			gameScore = Integer.sum(frameScore, gameScore);
+			gameScore.add(frameScore);
 		});
 		return new BowlingResponse(gameScore);
 	}
