@@ -22,4 +22,11 @@ class CalculateScoreServiceImplTest {
 		assertEquals(64, calculateScoreServiceImpl.calculateScore(roll).getScore());
 	}
 
+	@DisplayName("When Bowling rolls has a miss scenario")
+	@Test
+	void testcalculateScoreWithAMissScenario() {
+		int[] roll = new int[] { 1, 1, 2, 2, 3, 3, 4, 4, 4, 4, 6, 3, 1, 3, 2, 3, 3, 6, 0, 0 };
+		assertEquals(55, calculateScoreServiceImpl.calculateScore(roll).getScore());
+	}
+
 }

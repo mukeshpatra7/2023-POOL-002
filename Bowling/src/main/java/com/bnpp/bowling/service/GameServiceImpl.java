@@ -1,6 +1,7 @@
 package com.bnpp.bowling.service;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 import com.bnpp.bowling.constant.Constant;
 import com.bnpp.bowling.model.BowlingInput;
@@ -16,7 +17,16 @@ public class GameServiceImpl implements GameService {
 	public BowlingResponse play(BowlingInput input) {
 		String[] rolls = input.getBowlingRoll().replace(Constant.FRAME_SEPEARATOR, Constant.ROLLS_SEPERATOR)
 				.split(Constant.ROLLS_SEPERATOR);
+		updateCharacterWithValue(rolls);
 		return calculateScoreService.calculateScore(Arrays.stream(rolls).mapToInt(Integer::parseInt).toArray());
+	}
+	
+	private void updateCharacterWithValue(String[] rolls) {
+		IntStream.iterate(Constant.ZERO, roll -> roll + Constant.ONE).limit(rolls.length).forEach(i -> {
+			if (rolls[i].equals(Constant.MISS)) {
+				rolls[i] = String.valueOf(Constant.ZERO);
+			}
+		});	
 	}
 
 }

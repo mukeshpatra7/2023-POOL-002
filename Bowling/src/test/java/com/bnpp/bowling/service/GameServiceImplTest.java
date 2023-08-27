@@ -39,7 +39,16 @@ class GameServiceImplTest {
 		bowlingGameServiceImpl.play(new BowlingInput(input));
 		verify(calculateScoreService, times(1)).calculateScore(captor.capture());
 		assertArrayEquals(roll, captor.getValue());
+	}
 
+	@DisplayName("When Bowling rolls has a miss scenario")
+	@Test
+	void testcalculateScoreWithAMissScenario() {
+		String input = "11 22 33 44 44 63 13 23 36 --";
+		int[] roll = new int[] { 1, 1, 2, 2, 3, 3, 4, 4, 4, 4, 6, 3, 1, 3, 2, 3, 3, 6, 0, 0 };
+		bowlingGameServiceImpl.play(new BowlingInput(input));
+		verify(calculateScoreService, times(1)).calculateScore(captor.capture());
+		assertArrayEquals(roll, captor.getValue());
 	}
 
 }
