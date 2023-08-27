@@ -29,4 +29,11 @@ class CalculateScoreServiceImplTest {
 		assertEquals(55, calculateScoreServiceImpl.calculateScore(roll).getScore());
 	}
 
+	@DisplayName("When Bowling frames has a miss scenario")
+	@Test
+	void testCalculateScoreForFrameMissScenario() {
+		int[] roll = new int[] { 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0 };
+		assertEquals(90, calculateScoreServiceImpl.calculateScore(roll).getScore());
+	}
+
 }

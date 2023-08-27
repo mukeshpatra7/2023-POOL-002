@@ -51,4 +51,14 @@ class GameServiceImplTest {
 		assertArrayEquals(roll, captor.getValue());
 	}
 
+	@DisplayName("When Bowling frame has a miss scenario")
+	@Test
+	void testcalculateScoreForFrameMissScenario() {
+		String input = "9- 9- 9- 9- 9- 9- 9- 9- 9- 9-";
+		int[] roll = new int[] { 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0, 9, 0 };
+		bowlingGameServiceImpl.play(new BowlingInput(input));
+		verify(calculateScoreService, times(1)).calculateScore(captor.capture());
+		assertArrayEquals(roll, captor.getValue());
+	}
+
 }
