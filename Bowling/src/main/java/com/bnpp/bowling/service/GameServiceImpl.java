@@ -20,13 +20,15 @@ public class GameServiceImpl implements GameService {
 		updateCharacterWithValue(rolls);
 		return calculateScoreService.calculateScore(Arrays.stream(rolls).mapToInt(Integer::parseInt).toArray());
 	}
-	
+
 	private void updateCharacterWithValue(String[] rolls) {
 		IntStream.iterate(Constant.ZERO, roll -> roll + Constant.ONE).limit(rolls.length).forEach(i -> {
 			if (rolls[i].equals(Constant.MISS)) {
 				rolls[i] = String.valueOf(Constant.ZERO);
+			} else if (rolls[i].equals(Constant.SPARE)) {
+				rolls[i] = String.valueOf(Constant.TEN - Integer.parseInt(rolls[i - 1]));
 			}
-		});	
+		});
 	}
 
 }
